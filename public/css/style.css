@@ -1,0 +1,121 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*Header */
+.index-header-container{
+    width: 100%;
+    height: 160px;
+    background-color: #F01783;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-right: 50px;
+    display: flex;
+}
+.header-icon-box{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+    display: none;
+}
+.header-icon-box i{
+    cursor: pointer;
+}
+.index-title-box{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+.header-menu-bar{
+    display: flex;
+    margin-top: 110px;
+}
+.header-menu-content{
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+.header-menu-content i{
+    margin-right: 10px;
+}
+.header-content-popUp{
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background-color: black;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    display: none;
+}
+
+/*Side menu*/
+.index-side-menu{
+    position: fixed;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    background-color: #F01783;
+    display: none;
+}
+.index-side-menu ul{
+    height: 480px;
+}
+.index-side-menu li{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-left: 20px;
+    cursor: pointer;
+}
+.index-side-menu li i{
+    padding-right: 10px;
+}
+.index-side-menu li:hover{
+    box-shadow: -3px 3px 37px -1px rgba(0,0,0,0.75);
+}
+.side-menu-bar{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.side-menu-bar i{
+    margin-left: 15px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.side-menu-bar i:nth-child(1):hover{
+    color: springgreen;
+}
+.side-menu-bar i:nth-child(2):hover{
+    color:mediumblue;
+}
+.side-menu-bar i:nth-child(3):hover{
+    color:violet;
+}
+.side-menu-bar i:nth-child(4):hover{
+    color:cyan;
+}
+
+@media screen and (max-width:900px){
+    .header-icon-box{
+        display: flex;
+    }
+    .header-menu-bar{
+        display: none;
+    }
+}
