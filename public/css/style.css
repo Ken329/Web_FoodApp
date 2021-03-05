@@ -36,9 +36,15 @@
     justify-content: center;
     align-items: center;
 }
+.header-side-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .header-menu-bar{
     display: flex;
-    margin-top: 110px;
+    margin-top: 90px;
 }
 .header-menu-content{
     padding-left: 20px;
@@ -67,8 +73,21 @@
     background-color: #F01783;
     display: none;
 }
+.side-menu-user{
+    width: 100%;
+    height: 150px;
+    background-color: #F01783;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+.side-menu-user i, .side-menu-user p{
+    margin-top: 20px;
+}
 .index-side-menu ul{
-    height: 480px;
+    height: 330px;
 }
 .index-side-menu li{
     width: 100%;
@@ -111,11 +130,183 @@
     color:cyan;
 }
 
+/*blur effect*/
+.index-blur{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    display: none;
+}
+.index-main-container{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+/*index login*/
+.login-container{
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    position: relative;
+    margin-top: 5%;
+    border-radius: 30px;
+    display: none;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+.login-cancel{
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.index-login-btn-container{
+    width: 250px;
+    height: 50px;
+    box-shadow: -3px 3px 37px -1px rgba(0,0,0,0.75);
+    border-radius: 30px;
+    display: flex;
+    position: relative;
+}
+.index-login-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 125px;
+    height: 50px;
+    background-color: #F01783;
+    border-radius: 30px;
+    transition: 0.7s;
+}
+.index-login-button{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+.index-login-form{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+.index-login-input{
+    width: 60%;
+    height: 40px;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+}
+.index-login-enter{
+    width: 30%;
+    height: 30px;
+    outline: none;
+    border-radius: 15px;
+    background-color: #F01783;
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.index-login-input:focus{
+    width: 62%;
+}
+.index-login-input:hover{
+    width: 62%;
+}
+#login_conPass, #login_birth, #login_phone{
+    display: none;
+} 
+/*error*/
+.error-box{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    top: 30%;
+}
+.error-user{
+    width: 300px;
+    height: 40px;
+    background-color: #F01783;
+    border-radius: 20px;
+    display: none;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+    margin-top: 20px;
+}
+.error-user i{
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/*food container*/
+.index-food-container{
+    width: 50%;
+    height: 400px;
+    margin-top: 80px;
+    border-radius: 50px;
+}
+.index-food-box{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+.food-top-content{
+    width: 50%;
+    height: 100%;
+    border-radius: 30px;
+    margin: 5px;
+    background-color: #F651C1;
+}
+.food-bottom-content{
+    width: 33.33%;
+    height: 99%;
+    border-radius: 30px;
+    margin: 5px;
+    margin-top: 1%;
+    background-color: #F462C6;
+}
+
+@media screen and (min-width:901px){
+    .index-side-menu{
+        display: none;
+    }
+}
 @media screen and (max-width:900px){
     .header-icon-box{
         display: flex;
     }
-    .header-menu-bar{
+    .header-side-container{
         display: none;
     }
 }

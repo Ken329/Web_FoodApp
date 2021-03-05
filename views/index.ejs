@@ -10,6 +10,7 @@
     integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 </head>
 <body>
+    <div id="index_blur" class="index-blur"></div>
     <header class="index-header-container">
         <div class="header-icon-box">
             <i id="index_side_menu_btn" class="fas fa-2x fa-bars"></i>
@@ -18,37 +19,93 @@
             <i class="fas fa-3x fa-seedling"></i>
             <h1 class="header-title">Food App</h1>
         </div>
-        <div class="header-menu-bar">
-            <div id="login" class="header-menu-content">
-                <div id="loginP"><i class="fas fa-sign-in-alt"></i>Login/Sign Up</div>
-                <div id="loginPop" class="header-content-popUp"></div>
-            </div>
-            <div id="order" class="header-menu-content">
-                <div id="orderP"><i class="fas fa-stroopwafel"></i>Track Order</div>
-                <div id="orderPop" class="header-content-popUp"></div>
-            </div>
-            <div id="history" class="header-menu-content">
-                <div id="historyP"><i class="fas fa-history"></i>View History</div>
-                <div id="historyPop" class="header-content-popUp"></div>
-            </div>
-            <div id="about" class="header-menu-content">
-                <div id="aboutP"><i class="fas fa-user-tie"></i>About Us</div>
-                <div id="aboutPop" class="header-content-popUp"></div>
+        <div class="header-side-container">
+            <p id="header_welcomeMessage">Welcome to Food App</p>
+            <div class="header-menu-bar">
+                <div id="login" class="header-menu-content">
+                    <div id="loginP"><i class="fas fa-sign-in-alt"></i>Login/Sign Up</div>
+                    <div id="loginPop" class="header-content-popUp"></div>
+                </div>
+                <div id="order" class="header-menu-content">
+                    <div id="orderP"><i class="fas fa-stroopwafel"></i>Track Order</div>
+                    <div id="orderPop" class="header-content-popUp"></div>
+                </div>
+                <div id="history" class="header-menu-content">
+                    <div id="historyP"><i class="fas fa-history"></i>View History</div>
+                    <div id="historyPop" class="header-content-popUp"></div>
+                </div>
+                <div id="about" class="header-menu-content">
+                    <div id="aboutP"><i class="fas fa-user-tie"></i>About Us</div>
+                    <div id="aboutPop" class="header-content-popUp"></div>
+                </div>
             </div>
         </div>
     </header>
     <div class="index-side-menu" id="index_side_menu">
+        <div class="side-menu-user">
+            <i class="fas fa-2x fa-user"></i>
+            <p id="side_menu_user">Unknown User</p>
+        </div>
         <ul>
-            <li><i class="fas fa-sign-in-alt"></i>Login/Sign Up</li>
-            <li><i class="fas fa-stroopwafel"></i>Track Order</li>
-            <li><i class="fas fa-history"></i>View History</li>
-            <li><i class="fas fa-user-tie"></i>About Us</li>
+            <li id="side_menu_login"><i class="fas fa-sign-in-alt"></i>Login/Sign Up</li>
+            <li id="side_menu_track"><i class="fas fa-stroopwafel"></i>Track Order</li>
+            <li id="side_menu_history"><i class="fas fa-history"></i>View History</li>
+            <li id="side_menu_about"><i class="fas fa-user-tie"></i>About Us</li>
         </ul>
         <div class="side-menu-bar">
             <i class="fas fa-phone"></i>
             <i class="fab fa-facebook"></i>
             <i class="fab fa-instagram-square"></i>
             <i class="fab fa-twitter"></i>
+        </div>
+    </div>
+    <div class="index-main-container">
+        <div id="index_login" class="login-container">
+            <button class="login-cancel" id="login_cancel">X</button>
+            <div class="index-login-btn-container">
+                <div id="login_toggle" class="index-login-btn"></div>
+                <button id="login_btn" class="index-login-button">Login</button>
+                <button id="signup_btn" class="index-login-button">Sign Up</button>
+            </div>
+            <div id="login_form" class="index-login-form">
+                <input id="login_user" type="text" class="index-login-input" placeholder="Enter your Username">
+                <input id="login_pass" type="text" class="index-login-input" placeholder="Enter your Password">
+                <input id="login_conPass" type="text" class="index-login-input" placeholder="Confirm your Password">
+                <input id="login_birth" type="text" class="index-login-input" placeholder="Enter your Birth Date etc:dd/mm/yyy">
+                <input id="login_phone" type="text" class="index-login-input" placeholder="Enter your Phone Number etc:0121234567">
+                <button type="submit" id="login_enter" class="index-login-enter">Login</button>
+            </div>
+        </div>
+        <div id="error_box" class="error-box">
+            <div id="error_user" class="error-user"><i class="fas fa-window-close"></i>Username must be more than 6 characters</div>
+            <div id="error_pass" class="error-user"><i class="fas fa-window-close"></i>Password must be more than 6 characters</div>
+            <div id="error_conPass" class="error-user"><i class="fas fa-window-close"></i>Confirm password does not match with password</div>
+            <div id="error_birth" class="error-user"><i class="fas fa-window-close"></i>Invalid birth format</div>
+            <div id="error_phone" class="error-user"><i class="fas fa-window-close"></i>Invalid phone number format</div>
+            <div id="error_userAppear" class="error-user"><i class="fas fa-window-close"></i>Username has been registered, Please check</div>
+            <div id="wrong_user" class="error-user"><i class="fas fa-window-close"></i>Wrong username or password, please check</div>
+            <div id="error_no_login" class="error-user"><i class="fas fa-window-close"></i>Please login/sign up first</div>
+        </div>
+        <div class="index-food-container">
+            <div class="index-food-box">
+                <div class="food-top-content">
+                    <img src="img/icons8-ham-48.png">
+                </div>
+                <div class="food-top-content">
+                    
+                </div>
+            </div>
+            <div class="index-food-box">
+                <div class="food-bottom-content">
+
+                </div>
+                <div class="food-bottom-content">
+                    
+                </div>
+                <div class="food-bottom-content">
+                    
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/script.js"></script>
