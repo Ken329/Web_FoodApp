@@ -20,11 +20,14 @@
             <h1 class="header-title">Food App</h1>
         </div>
         <div class="header-side-container">
-            <p id="header_welcomeMessage">Welcome to Food App</p>
             <div class="header-menu-bar">
                 <div id="login" class="header-menu-content">
                     <div id="loginP"><i class="fas fa-sign-in-alt"></i>Login/Sign Up</div>
                     <div id="loginPop" class="header-content-popUp"></div>
+                    <ul id="login_pop">
+                        <li id="login_pop_check">Check Account</li>
+                        <li id="login_pop_logout">Logout</li>
+                    </ul>
                 </div>
                 <div id="order" class="header-menu-content">
                     <div id="orderP"><i class="fas fa-stroopwafel"></i>Track Order</div>
@@ -47,10 +50,12 @@
             <p id="side_menu_user">Unknown User</p>
         </div>
         <ul>
-            <li id="side_menu_login"><i class="fas fa-sign-in-alt"></i>Login/Sign Up</li>
-            <li id="side_menu_track"><i class="fas fa-stroopwafel"></i>Track Order</li>
-            <li id="side_menu_history"><i class="fas fa-history"></i>View History</li>
-            <li id="side_menu_about"><i class="fas fa-user-tie"></i>About Us</li>
+            <li id="side_menu_login" class="side-menu-li"><i class="fas fa-sign-in-alt"></i>Login/Sign Up</li>
+            <li id="side_menu_check" class="side-menu-pop"><i class="fas fa-user-circle"></i>Check Account</li>
+            <li id="side_menu_logout" class="side-menu-pop"><i class="fas fa-sign-out-alt"></i>Logout</li>
+            <li id="side_menu_track" class="side-menu-li"><i class="fas fa-stroopwafel"></i>Track Order</li>
+            <li id="side_menu_history" class="side-menu-li"><i class="fas fa-history"></i>View History</li>
+            <li id="side_menu_about" class="side-menu-li"><i class="fas fa-user-tie"></i>About Us</li>
         </ul>
         <div class="side-menu-bar">
             <i class="fas fa-phone"></i>
@@ -88,23 +93,43 @@
         </div>
         <div class="index-food-container">
             <div class="index-food-box">
-                <div class="food-top-content">
-                    <img src="img/icons8-ham-48.png">
+                <div id="index-fast-box" class="food-top-content">
+                    <img src="image/icons8-beef-burger-64.png">
+                    <div class="food-top-content-box">
+                        <h3>Fast Food Section</h3>
+                        <p>Fast food usually comes with fries and soft drinks. The portion is medium with a reasonable price</p>
+                    </div>
                 </div>
-                <div class="food-top-content">
-                    
+                <div id="index-main-box" class="food-top-content">
+                    <img src="image/icons8-thanksgiving-turkey-64.png">
+                    <div class="food-top-content-box">
+                        <h3>Main Course Section</h3>
+                        <p>Main Course is the most important meal throughout the whole dine. It usually comes with a big portion without drinks</p>
+                    </div>
                 </div>
             </div>
             <div class="index-food-box">
-                <div class="food-bottom-content">
-
+                <div id="index-dessert-box" class="food-bottom-content">
+                    <img src="image/icons8-macaron-64.png">
+                    <div class="food-bottom-content-box">
+                        <h3>Dessert Section</h3>
+                        <p>Dessert is something that you will be having after main course with a small portion to clear your throat and stomach</p>
+                    </div>
                 </div>
-                <div class="food-bottom-content">
-                    
-                </div>
-                <div class="food-bottom-content">
-                    
-                </div>
+                <divv id="index-appertizer-box" class="food-bottom-content">
+                    <img src="image/icons8-bagel-48.png">
+                    <div class="food-bottom-content-box">
+                        <h3>Appertizer Section</h3>
+                        <p>Appertizer is to clear your throat and tougue in order to taste the food perfectly without any coincidence</p>
+                    </div>
+                </divv>
+                <divv id="index-drink-box" class="food-bottom-content">
+                    <img src="image/icons8-kawaii-coffee-64.png">
+                    <div class="food-bottom-content-box">
+                        <h3>Drinks Section</h3>
+                        <p>We only have coffee, it matches our main course perfectly</p>
+                    </div>
+                </divv>
             </div>
         </div>
     </div>

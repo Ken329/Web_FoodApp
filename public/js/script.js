@@ -35,6 +35,13 @@ var loginForm = document.getElementById('login_form')
 var loginEnter = document.getElementById('login_enter')
 var logincancel = document.getElementById('login_cancel')
 
+//index box
+var indexFast = document.getElementById('index-fast-box')
+var indexMain = document.getElementById('index-main-box')
+var indexAppertizer = document.getElementById('index-appertizer-box')
+var indexDessert = document.getElementById('index-dessert-box')
+var indexDrink = document.getElementById('index-drink-box')
+
 //error message
 var errorBox = document.getElementById('error_box')
 var errorUser = document.getElementById('error_user')
@@ -45,6 +52,12 @@ var errorPhone = document.getElementById('error_phone')
 var errorUserAppear = document.getElementById('error_userAppear')
 var wrongUser = document.getElementById('wrong_user')
 var errorNoLogin = document.getElementById('error_no_login')
+
+//pop out
+var popLogout = document.getElementById('login_pop_logout')
+var popCheck = document.getElementById('login_pop_check')
+var sideMenuCheck = document.getElementById('side_menu_check')
+var sideMenuLogout = document.getElementById('side_menu_logout')
 
 var username = ""
 
@@ -59,12 +72,20 @@ sideMenuBtn.addEventListener('click', function(){
 })
 
 document.getElementById('login').addEventListener('mouseover', function(){
-    loginPop.style.display = 'block'
-    loginP.style.marginTop = "-3px"
+    if(loginCheck){
+        document.getElementById('login_pop').style.display = "block"
+    }else{
+        loginPop.style.display = 'block'
+        loginP.style.marginTop = "-3px"
+    }
 })
 document.getElementById('login').addEventListener('mouseleave', function(){
-    loginPop.style.display = 'none'
-    loginP.style.marginTop = "0"
+    if(loginCheck){
+        document.getElementById('login_pop').style.display = "none"
+    }else{
+        loginPop.style.display = 'none'
+        loginP.style.marginTop = "0"
+    }
 })
 document.getElementById('order').addEventListener('mouseover', function(){
     orderPop.style.display = 'block'
@@ -91,14 +112,51 @@ document.getElementById('about').addEventListener('mouseleave', function(){
     aboutP.style.marginTop = "0"
 })
 
+indexFast.addEventListener('click', function(){
+    if(!loginCheck){
+        errorBox.style.display = "flex"
+        errorNoLogin.style.display = "flex"
+    }
+    setTimeout("hideError()", 3000)
+})
+indexMain.addEventListener('click', function(){
+    if(!loginCheck){
+        errorBox.style.display = "flex"
+        errorNoLogin.style.display = "flex"
+    }
+    setTimeout("hideError()", 3000)
+})
+indexAppertizer.addEventListener('click', function(){
+    if(!loginCheck){
+        errorBox.style.display = "flex"
+        errorNoLogin.style.display = "flex"
+    }
+    setTimeout("hideError()", 3000)
+})
+indexDessert.addEventListener('click', function(){
+    if(!loginCheck){
+        errorBox.style.display = "flex"
+        errorNoLogin.style.display = "flex"
+    }
+    setTimeout("hideError()", 3000)
+})
+indexDrink.addEventListener('click', function(){
+    if(!loginCheck){
+        errorBox.style.display = "flex"
+        errorNoLogin.style.display = "flex"
+    }
+    setTimeout("hideError()", 3000)
+})
+
 loginP.addEventListener('click', function(){
     if(!loginCheck){
         blurEffect.style.display = "block"
         loginContainer.style.display = "flex"
-    }else{
-        alert("Logout Successfully, Thank you for shopping with us")
-        location.reload()
     }
+})
+popLogout.addEventListener('click', function(){
+    alert("Logout Successfully, Thank you for shopping with us")
+    location.reload()
 })
 sideLogin.addEventListener('click', function(){
     sideMenu.style.display = "none"
@@ -106,10 +164,39 @@ sideLogin.addEventListener('click', function(){
     if(!loginCheck){
         blurEffect.style.display = "block"
         loginContainer.style.display = "flex"
-    }else{
-        alert("Logout Successfully, Thank you for shopping with us")
-        location.reload()
     }
+})
+sideLogin.addEventListener('mouseover', function(){
+    if(loginCheck){
+        sideMenuCheck.style.display = "flex"
+        sideMenuLogout.style.display = "flex"
+    }
+})
+sideMenuLogout.addEventListener('click', function(){
+    alert("Logout Successfully, Thank you for shopping with us")
+    location.reload()
+})
+sideLogin.addEventListener('mouseleave', function(){
+    if(loginCheck){
+        sideMenuCheck.style.display = "none"
+        sideMenuLogout.style.display = "none"
+    }
+})
+sideMenuCheck.addEventListener('mouseover', function(){
+    sideMenuCheck.style.display = "flex"
+    sideMenuLogout.style.display = "flex"
+})
+sideMenuLogout.addEventListener('mouseover', function(){
+    sideMenuCheck.style.display = "flex"
+    sideMenuLogout.style.display = "flex"
+})
+sideMenuCheck.addEventListener('mouseleave', function(){
+    sideMenuCheck.style.display = "none"
+    sideMenuLogout.style.display = "none"
+})
+sideMenuLogout.addEventListener('mouseleave', function(){
+    sideMenuCheck.style.display = "none"
+    sideMenuLogout.style.display = "none"
 })
 login.addEventListener('click', function(){
     toggle.style.left = "0"
@@ -250,13 +337,13 @@ loginEnter.addEventListener('click', function(){
                 errorBox.style.display = "flex"
                 wrongUser.style.display = "flex"
             }else{
+                alert("Login Successful")
                 username = data.success
                 blurEffect.style.display = "none"
                 loginContainer.style.display = "none"
-                loginP.innerHTML = '<i class="fas fa-sign-out-alt"></i>Logout'
-                sideLogin.innerHTML = '<i class="fas fa-sign-out-alt"></i>Logout'
+                loginP.innerHTML = '<i class="fas fa-user"></i>' + username
+                sideLogin.innerHTML = '<i class="fas fa-user"></i>' + username
                 sideMenuUser.innerHTML = username
-                welcomeMessage.innerHTML = "Welcome back, "+username+""
                 loginCheck = true
             }
         })
