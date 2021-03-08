@@ -178,6 +178,7 @@
     justify-items: center;
     align-items: center;
 }
+
 /*index login*/
 .login-container{
     width: 500px;
@@ -299,7 +300,8 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-/*food container*/
+
+/*index container*/
 .index-food-container{
     width: 50%;
     height: 400px;
@@ -372,7 +374,77 @@
     text-align: justify;
     margin: 10px 10px 10px 10px;
 } 
-
+.fast-container{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin-top: 70px;
+}
+.fast-big-box{
+    width: 60%;
+    height: 50%;
+    display: flex;
+    justify-items: center;
+    justify-items: center;
+    align-content: center;
+}
+.fast-small-box{
+    width: 48%;
+    height: 95%;
+    background-color: #F651C1;
+    border-radius: 30px;
+    margin-left: 1%;
+    margin-right: 1%;
+    display: flex;
+    flex-direction: column;
+}
+.fast-small-box img{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-radius: 15px;
+}
+.fast-small-box h3{
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+}
+.small-box-button{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.small-box-button button{
+    height: 30px;
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.small-box-btn{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    width: 120px;
+    height: 30px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
 @media screen and (min-width:901px){
     .index-side-menu{
         display: none;

@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
+const expressLayout = require('express-ejs-layouts')
 const port = 3000
 const parser = require('body-parser')
 const { check, validateResult } = require('express-validator')
 const dbService = require('./public/js/dbService')
 var username
+var checkUser = false
 
 const urlEncoded = parser.urlencoded({extended : false})
 
@@ -13,11 +15,23 @@ app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/image', express.static(__dirname + 'public/image'));
 
+app.use(expressLayout)
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
 app.get('', (req, res)=>{
-    res.render('index')
+    checkUser = false
+    res.render('index', {text: 'Login/Sign Up'})
+})
+app.get('/user_site', (req, res)=>{
+    checkUser = true
+    res.render('index', {text: username})
+})
+app.get('/authorized', (req, res)=>{
+    res.json({user : checkUser})
+})
+app.get('/fastFood', (req, res)=>{
+    res.render('fastFood', {text: username})
 })
 app.get('/getUsername', urlEncoded, (req, res)=>{
     const user = req.query.user
