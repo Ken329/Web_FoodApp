@@ -7,6 +7,7 @@ const { check, validateResult } = require('express-validator')
 const dbService = require('./public/js/dbService')
 var username
 var checkUser = false
+var food
 
 const urlEncoded = parser.urlencoded({extended : false})
 
@@ -32,6 +33,9 @@ app.get('/authorized', (req, res)=>{
 })
 app.get('/fastFood', (req, res)=>{
     res.render('fastFood', {text: username})
+})
+app.get('/openAdding', (req, res)=>{
+    res.render('addingFood', {text: username})
 })
 app.get('/getUsername', urlEncoded, (req, res)=>{
     const user = req.query.user

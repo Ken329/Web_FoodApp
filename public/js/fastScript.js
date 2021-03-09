@@ -1,6 +1,14 @@
-var bugerBig = document.getElementById('fast_burger_big')
-var bugerSmall = document.getElementById('fast_burger_small')
-var bugerAdd = document.getElementById('fast_burger_add')
-bugerBig.addEventListener('click', function(){
-    alert("BIG")
+document.getElementById('food_menu_fast').style.color = "#F01783"
+
+document.getElementById('burger_div').addEventListener('click', function(){
+    window.open('/openAdding?food='+'Burger', "_self")
+})
+document.getElementById('taco_div').addEventListener('click', function(){
+    window.open('/openAdding?food='+'Taco', "_self")
+})
+document.getElementById('spring_div').addEventListener('click', function(){
+    window.open('/openAdding?food='+'Spring', "_self")
+})
+document.getElementById('hotdog_div').addEventListener('click', function(){
+    window.open('/openAdding?food='+'Hotdog', "_self")
 })
