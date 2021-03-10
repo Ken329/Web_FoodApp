@@ -25,6 +25,7 @@ var urlString = window.location.href
 var url = new URL(urlString);
 var foodName = url.searchParams.get("food")
 
+var price = 0
 var size = ""
 var drink = ""
 
@@ -107,9 +108,51 @@ cocktail.addEventListener('click', function(){
     selected()
 })
 add.addEventListener('click', function(){
-    console.log(size , drink)
+    getDrinkPrice(drink)
+    getSizePrice(size)
+    var total = price.toFixed(2)
+    var sTotal = total.toString()
+    fetch('/addMealCart?food='+foodName+"&size="+size+"&drink="+drink+"&price="+sTotal, {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            window.open('/user_site', "_self")
+        }
+    })
 })
-
+function getDrinkPrice(drink){
+    switch(drink){
+        case "coffee":
+            price += 2.10
+            break
+        case "special":
+            price += 2.70
+            break
+        case "lemenade":
+            price += 1.10
+            break
+        case "milk":
+            price += 3.50
+            break
+        case "cocktail":
+            price += 5.20
+            break
+    }
+}
+function getSizePrice(size){
+    switch(size){
+        case "small":
+            price -= 2
+            break
+        case "big":
+            price += 2
+            break
+        default:
+            break
+    }
+}
 function check(food){
     switch(food){
         case "Burger":
@@ -119,6 +162,7 @@ function check(food){
             sizeImg1.src = "image/icons8-beef-burger-64.png"
             sizeImg2.src = "image/icons8-beef-burger-64.png"
             sizeImg3.src = "image/icons8-beef-burger-64.png"
+            price = 19.99
             break
         case "Taco":
             addImg.src = "image/icons8-taco-64.png"
@@ -127,6 +171,7 @@ function check(food){
             sizeImg1.src = "image/icons8-taco-64.png"
             sizeImg2.src = "image/icons8-taco-64.png"
             sizeImg3.src = "image/icons8-taco-64.png"
+            price = 23.99
             break
         case "Spring":
             addImg.src = "image/icons8-spring-roll-48.png"
@@ -135,6 +180,7 @@ function check(food){
             sizeImg1.src = "image/icons8-spring-roll-48.png"
             sizeImg2.src = "image/icons8-spring-roll-48.png"
             sizeImg3.src = "image/icons8-spring-roll-48.png"
+            price = 14.99
             break
         case "Hotdog":
             addImg.src = "image/icons8-frankfurter-64.png"
@@ -143,6 +189,106 @@ function check(food){
             sizeImg1.src = "image/icons8-frankfurter-64.png"
             sizeImg2.src = "image/icons8-frankfurter-64.png"
             sizeImg3.src = "image/icons8-frankfurter-64.png"
+            price = 19.99
+            break
+        case "Japanese Bento":
+            addImg.src = "image/icons8-bento-48.png"
+            addDesc.innerHTML = "Original recepi comes with japanese bento, vegetables and drinks"
+            addFood.innerHTML = "Japanese Bento"
+            sizeImg1.src = "image/icons8-bento-48.png"
+            sizeImg2.src = "image/icons8-bento-48.png"
+            sizeImg3.src = "image/icons8-bento-48.png"
+            price = 29.99
+            break
+        case "Fish Set":
+            addImg.src = "image/icons8-fish-and-vegetables-50.png"
+            addDesc.innerHTML = "Original recepi comes with fish set, vegetables and drinks"
+            addFood.innerHTML = "Fish Set"
+            sizeImg1.src = "image/icons8-fish-and-vegetables-50.png"
+            sizeImg2.src = "image/icons8-fish-and-vegetables-50.png"
+            sizeImg3.src = "image/icons8-fish-and-vegetables-50.png"
+            price = 39.99
+            break
+        case "Pizza":
+            addImg.src = "image/icons8-eights-64.png"
+            addDesc.innerHTML = "Original recepi comes with pizza, vegetables and drinks"
+            addFood.innerHTML = "Pizza"
+            sizeImg1.src = "image/icons8-eights-64.png"
+            sizeImg2.src = "image/icons8-eights-64.png"
+            sizeImg3.src = "image/icons8-eights-64.png"
+            price = 20.99
+            break
+        case "Turkey":
+            addImg.src = "image/icons8-thanksgiving-turkey-64.png"
+            addDesc.innerHTML = "Original recepi comes with trukey, vegetables and drinks"
+            addFood.innerHTML = "Turkey"
+            sizeImg1.src = "image/icons8-thanksgiving-turkey-64.png"
+            sizeImg2.src = "image/icons8-thanksgiving-turkey-64.png"
+            sizeImg3.src = "image/icons8-thanksgiving-turkey-64.png"
+            price = 29.99
+            break
+        case "Banana Split":
+            addImg.src = "image/icons8-banana-split-100.png"
+            addDesc.innerHTML = "Original recepi comes with banana split and drinks"
+            addFood.innerHTML = "Banana Split"
+            sizeImg1.src = "image/icons8-banana-split-100.png"
+            sizeImg2.src = "image/icons8-banana-split-100.png"
+            sizeImg3.src = "image/icons8-banana-split-100.png"
+            price = 13.99
+            break
+        case "Cinnamon Roll":
+            addImg.src = "image/icons8-cinnamon-roll-48.png"
+            addDesc.innerHTML = "Original recepi comes with cinnamon roll and drinks"
+            addFood.innerHTML = "Cinnamon Roll"
+            sizeImg1.src = "image/icons8-cinnamon-roll-48.png"
+            sizeImg2.src = "image/icons8-cinnamon-roll-48.png"
+            sizeImg3.src = "image/icons8-cinnamon-roll-48.png"
+            price = 9.99
+            break
+        case "Ice Cream":
+            addImg.src = "image/icons8-ice-pop-pink-100.png"
+            addDesc.innerHTML = "Original recepi comes with ice cream and drinks"
+            addFood.innerHTML = "Ice Cream"
+            sizeImg1.src = "image/icons8-ice-pop-pink-100.png"
+            sizeImg2.src = "image/icons8-ice-pop-pink-100.png"
+            sizeImg3.src = "image/icons8-ice-pop-pink-100.png"
+            price = 9.99
+            break
+        case "Macaron":
+            addImg.src = "image/icons8-macaron-64.png"
+            addDesc.innerHTML = "Original recepi comes with macaron and drinks"
+            addFood.innerHTML = "Macaron"
+            sizeImg1.src = "image/icons8-macaron-64.png"
+            sizeImg2.src = "image/icons8-macaron-64.png"
+            sizeImg3.src = "image/icons8-macaron-64.png"
+            price = 4.99
+            break
+        case "Bagel":
+            addImg.src = "image/icons8-bagel-48.png"
+            addDesc.innerHTML = "Original recepi comes with begel and drinks"
+            addFood.innerHTML = "Begel"
+            sizeImg1.src = "image/icons8-bagel-48.png"
+            sizeImg2.src = "image/icons8-bagel-48.png"
+            sizeImg3.src = "image/icons8-bagel-48.png"
+            price = 12.99
+            break
+        case "French Fries":
+            addImg.src = "image/icons8-french-fries-48.png"
+            addDesc.innerHTML = "Original recepi comes with french fries and drinks"
+            addFood.innerHTML = "French Fries"
+            sizeImg1.src = "image/icons8-french-fries-48.png"
+            sizeImg2.src = "image/icons8-french-fries-48.png"
+            sizeImg3.src = "image/icons8-french-fries-48.png"
+            price = 6.99
+            break
+        case "Potato Chip":
+            addImg.src = "image/icons8-potato-chips-48.png"
+            addDesc.innerHTML = "Original recepi comes with potato chip and drinks"
+            addFood.innerHTML = "Potato Chip"
+            sizeImg1.src = "image/icons8-potato-chips-48.png"
+            sizeImg2.src = "image/icons8-potato-chips-48.png"
+            sizeImg3.src = "image/icons8-potato-chips-48.png"
+            price = 7.99
             break
     }
 }

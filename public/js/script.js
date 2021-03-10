@@ -4,20 +4,20 @@ var sideMenu = document.getElementById('index_side_menu')
 var sideLogin = document.getElementById("side_menu_login")
 var sideOrder = document.getElementById("side_menu_track")
 var sideHistory = document.getElementById("side_menu_history")
-var sideAbout = document.getElementById("side_menu_about")
+var sideCart = document.getElementById("side_menu_cart")
 var sideMenuUser = document.getElementById('side_menu_user')
 var check = true
 
 // header menu bar
-var welcomeMessage = document.getElementById('header_welcomeMessage')
+var title = document.getElementById('header_title')
 var loginPop = document.getElementById('loginPop')
 var orderPop = document.getElementById('orderPop')
 var historyPop = document.getElementById('historyPop')
-var aboutPop = document.getElementById('aboutPop')
+var cartPop = document.getElementById('cartPop')
 var loginP = document.getElementById('loginP')
 var orderP = document.getElementById('orderP')
 var historyP = document.getElementById('historyP')
-var aboutP = document.getElementById('aboutP')
+var cartP = document.getElementById('cartP')
 var loginCheck = false;
 
 // login/ sign up container
@@ -43,6 +43,9 @@ var sideMenuLogout = document.getElementById('side_menu_logout')
 var username = ""
 checkUserAuthorized()
 
+title.addEventListener('click', function(){
+    window.open('user_site', "_self")
+})
 // side menu
 sideMenuBtn.addEventListener('click', function(){
     if(check){
@@ -107,7 +110,7 @@ sideHistory.addEventListener('click', function(){
     }
     setTimeout("hideError()", 3000)
 })
-sideAbout.addEventListener('click', function(){
+sideCart.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
@@ -148,13 +151,13 @@ document.getElementById('history').addEventListener('mouseleave', function(){
     historyPop.style.display = 'none'
     historyP.style.marginTop = "0"
 })
-document.getElementById('about').addEventListener('mouseover', function(){
-    aboutPop.style.display = 'block'
-    aboutP.style.marginTop = "-3px"
+document.getElementById('cart').addEventListener('mouseover', function(){
+    cartPop.style.display = 'block'
+    cartP.style.marginTop = "-3px"
 })
-document.getElementById('about').addEventListener('mouseleave', function(){
-    aboutPop.style.display = 'none'
-    aboutP.style.marginTop = "0"
+document.getElementById('cart').addEventListener('mouseleave', function(){
+    cartPop.style.display = 'none'
+    cartP.style.marginTop = "0"
 })
 loginP.addEventListener('click', function(){
     if(!loginCheck){
@@ -180,7 +183,7 @@ historyP.addEventListener('click', function(){
     }
     setTimeout("hideError()", 3000)
 })
-aboutP.addEventListener('click', function(){
+cartP.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"

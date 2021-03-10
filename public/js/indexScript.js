@@ -31,6 +31,8 @@ indexMain.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/mainFood', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -38,6 +40,8 @@ indexAppertizer.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/appertizerFood', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -45,6 +49,8 @@ indexDessert.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/dessertFood', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -52,6 +58,8 @@ indexDrink.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/drinkFood', "_self")
     }
     setTimeout("hideError()", 3000)
 })

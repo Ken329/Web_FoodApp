@@ -63,5 +63,89 @@ class dbService{
             console.log(err)
         }
     }
+    async addFood(user, food, size, drink, price, quantity){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "INSERT INTO `food`(`username`, `food`, `size`, `drink`, `price`, `quantity`) VALUES (?,?,?,?,?,?)"
+                connection.query(query, [user, food, size, drink, price, quantity], (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async updateFood(user, food, size, drink, price, quantity){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "UPDATE `food` SET `quantity`= ? , `price` = ? WHERE username = ? and food = ? and size = ? and drink = ?"
+                connection.query(query, [quantity, price, user, food, size, drink], (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async searchFoodCart(user, food, size, drink){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "SELECT * FROM `food` WHERE username = ? and food = ? and size = ? and drink = ?"
+                connection.query(query, [user, food, size, drink], (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async addDrink(user, drink, price, quantity){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "INSERT INTO `drink`(`username`, `drink`, `price`, `quantity`) VALUES (?,?,?,?)"
+                connection.query(query, [user, drink, price, quantity], (err, result)=>{
+                    if (err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async searchDrink(user, drink){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "SELECT * FROM `drink` WHERE username = ?and drink = ?"
+                connection.query(query, [user, drink], (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async updateDrink(user, drink, price, quantity){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "UPDATE `drink` SET `quantity`= ? , `price` = ? WHERE username = ? and drink = ?"
+                connection.query(query, [quantity, price, user, drink], (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 module.exports = dbService

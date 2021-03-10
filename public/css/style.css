@@ -35,6 +35,7 @@
     justify-items: center;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .header-side-container{
     height: 100%;
@@ -376,7 +377,6 @@
 } 
 .fast-container{
     width: 100%;
-    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -403,11 +403,12 @@
 }
 .fast-big-box{
     width: 60%;
-    height: 75%;
+    height: 280px;
     display: flex;
     justify-items: center;
     justify-items: center;
     align-content: center;
+    margin-bottom: 20px;
 }
 .fast-small-box{
     width: 24%;

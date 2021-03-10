@@ -34,6 +34,18 @@ app.get('/authorized', (req, res)=>{
 app.get('/fastFood', (req, res)=>{
     res.render('fastFood', {text: username})
 })
+app.get('/mainFood', (req, res)=>{
+    res.render('mainFood', {text: username})
+})
+app.get('/dessertFood', (req, res)=>{
+    res.render('dessertFood', {text: username})
+})
+app.get('/appertizerFood', (req, res)=>{
+    res.render('appertizerFood', {text: username})
+})
+app.get('/drinkFood', (req, res)=>{
+    res.render('drinkFood', {text: username})
+})
 app.get('/openAdding', (req, res)=>{
     res.render('addingFood', {text: username})
 })
@@ -51,6 +63,59 @@ app.get('/getUsername', urlEncoded, (req, res)=>{
         }
     })
     .then(err => console.log(err))
+})
+app.post('/addMealCart', urlEncoded, (req, res)=>{
+    const meal = req.query.food
+    const size = req.query.size
+    const drink = req.query.drink
+    const price = req.query.price
+
+    const db = dbService.getdbInstance()
+    const result = db.searchFoodCart(username, meal, size, drink)
+    result
+    .then(data => {
+        if(data.length > 0){
+            var quantity = parseInt(data[0].quantity) + 1
+            var sQuantity = quantity.toString()
+            var newPrice = parseInt(data[0].price) * 2
+            var total = newPrice.toFixed(2)
+            var sTotal = total.toString()
+            const result = db.updateFood(username, meal, size, drink, sTotal, sQuantity)
+            result
+            .then(data => res.json({success : true}))
+            .then(err => console.log(err))
+        }else{
+            const result = db.addFood(username, meal, size, drink, price, "1")
+            result
+            .then(data => res.json({success : true}))
+            .then(err => console.log(err))
+        }
+    })
+    .then(err => console.log(err))
+})
+app.post('/addDrinkCart', urlEncoded, (req, res)=>{
+    const drink = req.query.drink
+    const price = req.query.price
+    const db = dbService.getdbInstance()
+    const result = db.searchDrink(username, drink)
+    result
+    .then(data => {
+        if(data.length > 0){
+            var quantity = parseInt(data[0].quantity) + 1
+            var sQuantity = quantity.toString()
+            
+            console.log(data[0].price)
+            // const result = db.updateDrink(username, drink, sTotal, sQuantity)
+            // result
+            // .then(data => res.json({success : true}))
+            // .then(err => console.log(err))
+        }else{
+            const result = db.addDrink(username, drink, price, "1")
+            result
+            .then(data => res.json({success : true}))
+            .then(err => console.log(err))
+        }
+    })
 })
 app.post('/signUp', urlEncoded, (req, res)=>{
     const user = req.query.user
