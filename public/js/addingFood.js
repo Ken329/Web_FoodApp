@@ -45,21 +45,21 @@ small.addEventListener('click', function(){
     small.style.backgroundColor = "#F462C6"
     medium.style.backgroundColor = ""
     big.style.backgroundColor = ""
-    size = "small"
+    size = "Small"
     selected()
 })
 medium.addEventListener('click', function(){
     small.style.backgroundColor = ""
     medium.style.backgroundColor = "#F462C6"
     big.style.backgroundColor = ""
-    size = "medium"
+    size = "Medium"
     selected()
 })
 big.addEventListener('click', function(){
     small.style.backgroundColor = ""
     medium.style.backgroundColor = ""
     big.style.backgroundColor = "#F462C6"
-    size = "big"
+    size = "Big"
     selected()
 })
 coffee.addEventListener('click', function(){
@@ -68,7 +68,7 @@ coffee.addEventListener('click', function(){
     lemonade.style.backgroundColor = ""
     milk.style.backgroundColor = ""
     cocktail.style.backgroundColor = ""
-    drink = "coffee"
+    drink = "Coffee"
     selected()
 })
 special.addEventListener('click', function(){
@@ -77,7 +77,7 @@ special.addEventListener('click', function(){
     lemonade.style.backgroundColor = ""
     milk.style.backgroundColor = ""
     cocktail.style.backgroundColor = ""
-    drink = "special"
+    drink = "Special Coffee"
     selected()
 })
 lemonade.addEventListener('click', function(){
@@ -86,7 +86,7 @@ lemonade.addEventListener('click', function(){
     lemonade.style.backgroundColor = "#F462C6"
     milk.style.backgroundColor = ""
     cocktail.style.backgroundColor = ""
-    drink = "lemonade"
+    drink = "Lemonade"
     selected()
 })
 milk.addEventListener('click', function(){
@@ -95,7 +95,7 @@ milk.addEventListener('click', function(){
     lemonade.style.backgroundColor = ""
     milk.style.backgroundColor = "#F462C6"
     cocktail.style.backgroundColor = ""
-    drink = "milk"
+    drink = "Milkshake"
     selected()
 })
 cocktail.addEventListener('click', function(){
@@ -104,7 +104,7 @@ cocktail.addEventListener('click', function(){
     lemonade.style.backgroundColor = ""
     milk.style.backgroundColor = ""
     cocktail.style.backgroundColor = "#F462C6"
-    drink = "cocktail"
+    drink = "Coconut Cocktail"
     selected()
 })
 add.addEventListener('click', function(){
@@ -176,7 +176,7 @@ function check(food){
         case "Spring":
             addImg.src = "image/icons8-spring-roll-48.png"
             addDesc.innerHTML = "Original recepi comes with spring roll, drinks and fries"
-            addFood.innerHTML = "Burger"
+            addFood.innerHTML = "Spring"
             sizeImg1.src = "image/icons8-spring-roll-48.png"
             sizeImg2.src = "image/icons8-spring-roll-48.png"
             sizeImg3.src = "image/icons8-spring-roll-48.png"
@@ -185,7 +185,7 @@ function check(food){
         case "Hotdog":
             addImg.src = "image/icons8-frankfurter-64.png"
             addDesc.innerHTML = "Original recepi comes with hotdog, drinks and fries"
-            addFood.innerHTML = "Burger"
+            addFood.innerHTML = "Hotdog"
             sizeImg1.src = "image/icons8-frankfurter-64.png"
             sizeImg2.src = "image/icons8-frankfurter-64.png"
             sizeImg3.src = "image/icons8-frankfurter-64.png"

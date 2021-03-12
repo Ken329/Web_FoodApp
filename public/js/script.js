@@ -187,6 +187,8 @@ cartP.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/cart', "_self")
     }
     setTimeout("hideError()", 3000)
 })

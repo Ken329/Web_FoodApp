@@ -66,8 +66,8 @@ class dbService{
     async addFood(user, food, size, drink, price, quantity){
         try{
             const response = await new Promise((resolve, reject)=>{
-                const query = "INSERT INTO `food`(`username`, `food`, `size`, `drink`, `price`, `quantity`) VALUES (?,?,?,?,?,?)"
-                connection.query(query, [user, food, size, drink, price, quantity], (err, result)=>{
+                const query = "INSERT INTO `food`(`username`, `food`, `size`, `drink`, `price`, `quantity`, `id`) VALUES (?,?,?,?,?,?,?)"
+                connection.query(query, [user, food, size, drink, price, quantity, null], (err, result)=>{
                     if(err) throw err
                     resolve(result)
                 })
@@ -108,8 +108,8 @@ class dbService{
     async addDrink(user, drink, price, quantity){
         try{
             const response = await new Promise((resolve, reject)=>{
-                const query = "INSERT INTO `drink`(`username`, `drink`, `price`, `quantity`) VALUES (?,?,?,?)"
-                connection.query(query, [user, drink, price, quantity], (err, result)=>{
+                const query = "INSERT INTO `drink`(`username`, `drink`, `price`, `quantity`, `id`) VALUES (?,?,?,?,?)"
+                connection.query(query, [user, drink, price, quantity, null], (err, result)=>{
                     if (err) throw err
                     resolve(result)
                 })
@@ -139,6 +139,62 @@ class dbService{
                 const query = "UPDATE `drink` SET `quantity`= ? , `price` = ? WHERE username = ? and drink = ?"
                 connection.query(query, [quantity, price, user, drink], (err, result)=>{
                     if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async getCartFood(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from food where username = '"+user+"'"
+                connection.query(query, (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async getCartDrink(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from drink where username = '"+user+"'"
+                connection.query(query, (err, result)=>{
+                    if(err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async deleteFood(id){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "delete from `food` where id = '"+id+"'"
+                connection.query(query, (err, result)=>{
+                    if (err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async deleteDrink(id){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "delete from `drink` where id = '"+id+"'"
+                connection.query(query, (err, result)=>{
+                    if (err) throw err
                     resolve(result)
                 })
             })
