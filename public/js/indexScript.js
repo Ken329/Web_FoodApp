@@ -2,7 +2,6 @@ var indexFast = document.getElementById('index-fast-box')
 var indexMain = document.getElementById('index-main-box')
 var indexAppertizer = document.getElementById('index-appertizer-box')
 var indexDessert = document.getElementById('index-dessert-box')
-var indexDrink = document.getElementById('index-drink-box')
 
 var loginContainer = document.getElementById('index_login')
 var login = document.getElementById('login_btn')
@@ -51,15 +50,6 @@ indexDessert.addEventListener('click', function(){
         errorNoLogin.style.display = "flex"
     }else{
         window.open('/dessertFood', "_self")
-    }
-    setTimeout("hideError()", 3000)
-})
-indexDrink.addEventListener('click', function(){
-    if(!loginCheck){
-        errorBox.style.display = "flex"
-        errorNoLogin.style.display = "flex"
-    }else{
-        window.open('/drinkFood', "_self")
     }
     setTimeout("hideError()", 3000)
 })

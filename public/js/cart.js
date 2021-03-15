@@ -6,16 +6,19 @@ var quan = document.getElementById('cart_quan')
 var minus = document.getElementById('cart_minus')
 var add = document.getElementById('cart_add')
 var foodContainer = document.getElementById('food_container')
-var drinkContainer = document.getElementById('drink_container')
+var checkoutContainenr = document.getElementById('checkout')
+
+var noFood = document.getElementById('no_food')
 
 var cItem = document.getElementById('checkout_item')
 var cTotal = document.getElementById('checkout_total')
 var cTax = document.getElementById('checkout_tax')
 var cAmmout = document.getElementById('checkout_ammount')
 
-var checkout = document.getElementById('checkout-btn')
+var checkout = document.getElementById('checkout_btn')
 
 var foodImage = ""
+
 var total = 0
 var quan = 0
 var tax = 0
@@ -30,13 +33,15 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 function putFoodData(data){
     if(data.length === 0){
-        foodContainer.innerHTML = "No Result"
+        noFood.style.display = "block"
         return
     }
+    checkoutContainenr.style.display = 'flex'
+    checkout.style.display = "block"
     let newTask = ""
     data.forEach(function({food, size, drink, price, quantity, id}){
         filterName(food)
-        addPrice(price, quantity)
+        addPrice(quantity, price)
         newTask += `<div class="food-content-div">`
         newTask += `<img src="${foodImage}" alt="bagel">`
         newTask += `<div class="content-div">`
@@ -58,82 +63,42 @@ function putFoodData(data){
     foodContainer.innerHTML = newTask
     insertCheck()
 }
-document.addEventListener("DOMContentLoaded", function(){
-    fetch('/getCartDrink', {
-        method: "GET"
-    })
-    .then(res => res.json())
-    .then(data => putDrinkData(data['data']))
-})
-function putDrinkData(data){
-    if(data.length === 0){
-        drinkContainer.innerHTML = "No Result"
-        return
-    }
-    let newTask = ""
-    data.forEach(function({drink, price, quantity, id}){
-        filterName(drink)
-        addPrice(price, quantity)
-        newTask += `<div class="food-content-div">`
-        newTask += `<img src="${foodImage}" alt="bagel">`
-        newTask += `<div class="content-div">`
-        newTask += `<p id="cart_food">Drink: ${drink}</p>`
-        newTask += `</div>`
-        newTask += `<div class="content-div">`
-        newTask += `<p id="cart_price">Price: ${price}</p>`
-        newTask += `<div class="content-price">`
-        newTask += `<p id="cart_quan">Quantity: ${quantity}</p>`
-        newTask += `</div>`
-        newTask += `</div>`
-        newTask += `<div class="new-content-div">`
-        newTask += `<i data-id="${id}" class="fas fa-trash-alt"></i>`
-        newTask += `</div>`
-        newTask += `</div>`
-    })
-    drinkContainer.innerHTML = newTask
-}
 document.getElementById('food_container').addEventListener('click', function(event){
     if(event.target.className === "fas fa-trash-alt"){
         deleteFood(event.target.dataset.id)
     }
 })
-document.getElementById('drink_container').addEventListener('click', function(event){
-    if(event.target.className === "fas fa-trash-alt"){
-        deleteDrink(event.target.dataset.id)
-    }
-})
 checkout.addEventListener('click', function(){
-    
+    var number = Math.floor((Math.random() * 1000) + 1)
+    fetch('/checkout?number='+number, {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            window.open('/success', "_self")
+        }
+    })
 })
 function insertCheck(){
     var newTotal = total.toFixed(2)
     cItem.innerHTML = quan.toString()
-    cTotal.innerHTML = newTotal.toString()
-    cTax.innerHTML = tax.toString()
+    cTotal.innerHTML = "RM"+newTotal.toString()
+    cTax.innerHTML = "RM"+tax.toString()
     amount = parseFloat(newTotal) + parseFloat(tax)
-    cAmmout.innerHTML = amount.toString()
+    var newAmount = amount.toFixed(2)
+    cAmmout.innerHTML = "RM"+newAmount.toString()
 }
-function addPrice(item, quantity){
-    var itemPrice = parseFloat(item)
+function addPrice(item, price){
+    var itemPrice = parseFloat(price)
     total += itemPrice
-    var itemQuantity = parseInt(quantity)
+    var itemQuantity = parseInt(item)
     quan += itemQuantity
     var itemTax = (total / 100) * 6
     tax = itemTax.toFixed(2)
 }
 function deleteFood(id){
     fetch('/deleteFood?id='+id, {
-        method: "POST"
-    })
-    .then(res => res.json())
-    .then(data =>{
-        if(data.success){
-            window.location.reload()
-        }
-    })
-}
-function deleteDrink(id){
-    fetch('/deleteDrink?id='+id, {
         method: "POST"
     })
     .then(res => res.json())

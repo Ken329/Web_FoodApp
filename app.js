@@ -43,14 +43,17 @@ app.get('/dessertFood', (req, res)=>{
 app.get('/appertizerFood', (req, res)=>{
     res.render('appertizerFood', {text: username})
 })
-app.get('/drinkFood', (req, res)=>{
-    res.render('drinkFood', {text: username})
-})
 app.get('/openAdding', (req, res)=>{
     res.render('addingFood', {text: username})
 })
 app.get('/cart', (req, res)=>{
     res.render('cart', {text : username})
+})
+app.get('/track', (req, res)=>{
+    res.render('trackPage', {text : username})
+})
+app.get('/success', (req, res)=>{
+    res.render('success', {text : username})
 })
 app.get('/getUsername', urlEncoded, (req, res)=>{
     const user = req.query.user
@@ -74,12 +77,29 @@ app.get('/getCartFood', (req, res)=>{
     .then(data => res.json({data : data}))
     .then(err => console.log(err))
 })
-
-app.get('/getCartDrink', (req, res)=>{
+app.get('/getTrackId', (req, res)=>{
     const db = dbService.getdbInstance()
-    const result = db.getCartDrink(username)
+    const result = db.getTrackId(username)
     result
     .then(data => res.json({data : data}))
+    .then(err => console.log(err))
+})
+app.post('/getTrackFood', urlEncoded, (req, res)=>{
+    const id = req.query.id
+    
+    const db = dbService.getdbInstance()
+    const result = db.getTrackFood(id, username)
+    result
+    .then(data => res.json({data : data}))
+    .then(err => console.log(err))
+})
+app.post("/checkout", (req, res)=>{
+    const num = req.query.number
+
+    const db = dbService.getdbInstance()
+    const result = db.checkoutFood(username, num)
+    result
+    .then(data => res.json({success : true}))
     .then(err => console.log(err))
 })
 app.post('/addMealCart', urlEncoded, (req, res)=>{
@@ -114,48 +134,11 @@ app.post('/addMealCart', urlEncoded, (req, res)=>{
     })
     .then(err => console.log(err))
 })
-app.post('/addDrinkCart', urlEncoded, (req, res)=>{
-    const drink = req.query.drink
-    const price = req.query.price
-    const db = dbService.getdbInstance()
-    const result = db.searchDrink(username, drink)
-    result
-    .then(data => {
-        if(data.length > 0){
-            var newQuantity = parseInt(data[0].quantity)
-            var newPrice = parseFloat(data[0].price) 
-            var getSingle = newPrice / newQuantity
-            newQuantity += 1
-            getSingle *= newQuantity
-            
-            var sQuantity = newQuantity.toString()
-            var sPrice = getSingle.toString()
-            const result = db.updateDrink(username, drink, sPrice, sQuantity)
-            result
-            .then(data => res.json({success : true}))
-            .then(err => console.log(err))
-        }else{
-            const result = db.addDrink(username, drink, price, "1")
-            result
-            .then(data => res.json({success : true}))
-            .then(err => console.log(err))
-        }
-    })
-})
 app.post('/deleteFood', urlEncoded, (req, res)=>{
     const id = req.query.id
 
     const db = dbService.getdbInstance()
     const result = db.deleteFood(id)
-    result
-    .then(data => res.json({success : true}))
-    .then(err => console.log(err))
-})
-app.post('/deleteDrink', urlEncoded, (req, res)=>{
-    const id = req.query.id
-
-    const db = dbService.getdbInstance()
-    const result = db.deleteDrink(id)
     result
     .then(data => res.json({success : true}))
     .then(err => console.log(err))

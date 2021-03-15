@@ -100,6 +100,8 @@ sideOrder.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/track', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -107,6 +109,8 @@ sideHistory.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+
     }
     setTimeout("hideError()", 3000)
 })
@@ -114,6 +118,8 @@ sideCart.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/cart', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -173,6 +179,8 @@ orderP.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+        window.open('/track', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -180,6 +188,8 @@ historyP.addEventListener('click', function(){
     if(!loginCheck){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
+    }else{
+
     }
     setTimeout("hideError()", 3000)
 })

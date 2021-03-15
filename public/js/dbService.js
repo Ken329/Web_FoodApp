@@ -66,8 +66,8 @@ class dbService{
     async addFood(user, food, size, drink, price, quantity){
         try{
             const response = await new Promise((resolve, reject)=>{
-                const query = "INSERT INTO `food`(`username`, `food`, `size`, `drink`, `price`, `quantity`, `id`) VALUES (?,?,?,?,?,?,?)"
-                connection.query(query, [user, food, size, drink, price, quantity, null], (err, result)=>{
+                const query = "INSERT INTO `food`(`username`, `food`, `size`, `drink`, `price`, `quantity`, `id`, `position`, `track_id`) VALUES (?,?,?,?,?,?,?,?,?)"
+                connection.query(query, [user, food, size, drink, price, quantity, null, "cart", 0], (err, result)=>{
                     if(err) throw err
                     resolve(result)
                 })
@@ -105,66 +105,10 @@ class dbService{
             console.log(err)
         }
     }
-    async addDrink(user, drink, price, quantity){
-        try{
-            const response = await new Promise((resolve, reject)=>{
-                const query = "INSERT INTO `drink`(`username`, `drink`, `price`, `quantity`, `id`) VALUES (?,?,?,?,?)"
-                connection.query(query, [user, drink, price, quantity, null], (err, result)=>{
-                    if (err) throw err
-                    resolve(result)
-                })
-            })
-            return response
-        }catch(err){
-            console.log(err)
-        }
-    }
-    async searchDrink(user, drink){
-        try{
-            const response = await new Promise((resolve, reject)=>{
-                const query = "SELECT * FROM `drink` WHERE username = ?and drink = ?"
-                connection.query(query, [user, drink], (err, result)=>{
-                    if(err) throw err
-                    resolve(result)
-                })
-            })
-            return response
-        }catch(err){
-            console.log(err)
-        }
-    }
-    async updateDrink(user, drink, price, quantity){
-        try{
-            const response = await new Promise((resolve, reject)=>{
-                const query = "UPDATE `drink` SET `quantity`= ? , `price` = ? WHERE username = ? and drink = ?"
-                connection.query(query, [quantity, price, user, drink], (err, result)=>{
-                    if(err) throw err
-                    resolve(result)
-                })
-            })
-            return response
-        }catch(err){
-            console.log(err)
-        }
-    }
     async getCartFood(user){
         try{
             const response = await new Promise((resolve, reject)=>{
-                const query = "select * from food where username = '"+user+"'"
-                connection.query(query, (err, result)=>{
-                    if(err) throw err
-                    resolve(result)
-                })
-            })
-            return response
-        }catch(err){
-            console.log(err)
-        }
-    }
-    async getCartDrink(user){
-        try{
-            const response = await new Promise((resolve, reject)=>{
-                const query = "select * from drink where username = '"+user+"'"
+                const query = "select * from food where username = '"+user+"' and position = 'cart'"
                 connection.query(query, (err, result)=>{
                     if(err) throw err
                     resolve(result)
@@ -189,11 +133,39 @@ class dbService{
             console.log(err)
         }
     }
-    async deleteDrink(id){
+    async checkoutFood(user, number){
         try{
             const response = await new Promise((resolve, reject)=>{
-                const query = "delete from `drink` where id = '"+id+"'"
-                connection.query(query, (err, result)=>{
+                const query = "UPDATE `food` SET `position`= 'checkout', track_id = ? WHERE username = ? and position = ?"
+                connection.query(query, [number, user, "cart"], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async getTrackId(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select track_id from food where username = ? and position = ?"
+                connection.query(query, [user, "checkout"], (err, result)=>{
+                    if (err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async getTrackFood(id, user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from food where username = ? and position = ? and track_id = ?"
+                connection.query(query, [user, "checkout", id], (err, result)=>{
                     if (err) throw err
                     resolve(result)
                 })
