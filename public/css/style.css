@@ -660,7 +660,7 @@
 }
 .track-container{
     width: 60%;
-    padding-top: 30px;
+    margin-top: 90px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -690,7 +690,7 @@
 #track{
     margin-left: 400px;
 }
-.track-button{
+.track, .recieve{
     width: 140px;
     height: 30px;
     background-color: #F462C6;
@@ -729,7 +729,7 @@
     width: 100%;
     padding: 10px 20px;
 }
-
+/*success page*/
 .success-container{
     width: 60%;
     margin-left: auto;
@@ -750,6 +750,57 @@
     width: 80%;
     height: 300px;
     margin-left: 10%;
+}
+/*tracking order page*/
+.trackingOrder-container{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+.trackingOrder-container div{
+    display: flex;
+    margin-bottom: 10px;
+}
+.order-container{
+    width: 100%;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.order-div{
+    width: 100%;
+    height: 120px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    margin-top: 10px;
+}
+.order-div img{
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: -3px 3px 37px -1px rgba(0,0,0,0.75);
+}
+.order-div div{
+    height: 100%;
+    width: 30%;
+    padding-left: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+.order-div div p{
+    margin-bottom: 10px;
 }
 @media screen and (min-width:901px){
     .index-side-menu{

@@ -44,7 +44,12 @@ var username = ""
 checkUserAuthorized()
 
 title.addEventListener('click', function(){
-    window.open('user_site', "_self")
+    if(!loginCheck){
+        errorBox.style.display = "flex"
+        errorNoLogin.style.display = "flex"
+    }else{
+        window.open('user_site', "_self")
+    }
 })
 // side menu
 sideMenuBtn.addEventListener('click', function(){

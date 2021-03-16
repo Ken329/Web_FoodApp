@@ -84,6 +84,20 @@ app.get('/getTrackId', (req, res)=>{
     .then(data => res.json({data : data}))
     .then(err => console.log(err))
 })
+app.get('/trackingOrder', urlEncoded, (req, res)=>{
+    const trackingId = req.query.id
+
+    res.render('trackingOrder', { text : username, id : trackingId})
+})
+app.post('/getTrackingData', urlEncoded, (req, res)=>{
+    const id = req.query.id
+
+    const db = dbService.getdbInstance()
+    const result = db.getTrackingData(id, username)
+    result
+    .then(data => res.json({data : data}))
+    .then(err => console.log(err))
+})
 app.post('/getTrackFood', urlEncoded, (req, res)=>{
     const id = req.query.id
     

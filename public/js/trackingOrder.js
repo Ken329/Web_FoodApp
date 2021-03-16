@@ -1,79 +1,55 @@
-var box = document.getElementById('track_box')
-var newData = []
-var newDataDrink = []
-let inner = ""
+var container = document.getElementById('order_container')
+var quantity = document.getElementById('track_qauntity')
+var tTotal = document.getElementById('track_total')
+var tTax = document.getElementById('track_tax')
+var tAmount = document.getElementById('track_amount')
+var foodImage
 var count = 0
-var foodImage = ""
+var total = 0
+var tax = 0
+var amount = 0
 
-document.addEventListener("DOMContentLoaded", function(){
-    fetch('/getTrackId', {
-        method: "GET"
+document.addEventListener('DOMContentLoaded', function(){
+    var id = document.getElementById('track_id').innerText
+    fetch('/getTrackingData?id='+id, {
+        method: "POST"
     })
     .then(res => res.json())
-    .then(data => filter(data['data']))
+    .then(data => addData(data['data']))
 })
-function filter(data){
-    newData.push(data[0].track_id)
-    var number = (data[0].track_id)
-    for(var i = 1; i < data.length; i++){
-        if(number !== data[i].track_id){
-            newData.push(data[i].track_id)
-            number = data[i].track_id
-        }
-    }
-    getFood()
-}
-function getFood(){
-    for(var i = 0; i < newData.length; i++){
-        fetch('/getTrackFood?id='+newData[i], {
-            method:"POST"
-        })
-        .then(res => res.json())
-        .then(data => putFoodData(data['data']))
-    }
-}
-function putFoodData(data){
-    inner += `<div class="track-box">`
-    inner += `<div class="track-title">`
-    inner += `<p class="track-id">Tracking Number: ${newData[count]}</p>`
-    inner += `<button data-id="${newData[count]}" id="track" class="track">Track Order</button>`
-    inner += `<button data-id="${newData[count]}" class="recieve">Order Recieve</button>`
-    inner += `</div>`
-    inner += `<div id="track_body">`    
-    count++
+function addData(data){
+    let inner = ""
     data.forEach(function({food, size, drink, price, quantity, id, track_id}){
         filterName(food)
-        inner += `<div class="track-body">`
+        addPrice(price)
+        count += parseInt(quantity)
+        inner += `<div class="order-div">`
         inner += `<img src="${foodImage}" alt="Bagel">`
-        inner += `<div class="track-body-div">`
-        inner += `<div class="body-div">`
-        inner += `<div>Food: ${food}</div>`
-        inner += `<div>Price: ${price}</div>`
-        inner += `<div>Quantity: ${quantity}</div>`
+        inner += `<div>`
+        inner += `<p>Food: ${food}</p>`
+        inner += `<p>Size: ${size}</p>`
+        inner += `<p>Drink: ${drink}</p>`
         inner += `</div>`
-        inner += `<div class="new-body-div">`
-        inner += `<ul>`
-        inner += `<li>Size: ${size}</li>`
-        inner += `<li>Drink: ${drink}</li>`
-        inner += `</ul>`
+        inner += `<div>`
+        inner += `<p>Quantity: ${quantity}</p>`
         inner += `</div>`
+        inner += `<div>`
+        inner += `<p>Price: ${price}</p>`
         inner += `</div>`
         inner += `</div>`
     })
-    inner += `</div>`
-    inner += `</div>`
-    box.innerHTML = inner
+    container.innerHTML = inner
+    quantity.innerHTML = count.toString()
+    tTotal.innerHTML = total.toFixed(2).toString()
+    tTax.innerHTML = tax.toString()
+    amount = parseFloat(total) + parseFloat(tax)
+    tAmount.innerHTML = amount.toFixed(2).toString()
 }
-box.addEventListener('click', function(event){
-    if(event.target.className === "track"){
-        trackingOrder(event.target.dataset.id)
-    }
-    if(event.target.className === "recieve"){
-        console.log(event.target.dataset.id)
-    }
-})
-function trackingOrder(id){
-    window.open('/trackingOrder?id='+id, "_self")
+function addPrice(price){
+    var itemPrice = parseFloat(price)
+    total += itemPrice
+    var itemTax = (total / 100) * 6
+    tax = itemTax.toFixed(2)
 }
 function filterName(food){
     switch(food){

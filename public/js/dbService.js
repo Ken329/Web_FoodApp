@@ -175,5 +175,19 @@ class dbService{
             console.log(err)
         }
     }
+    async getTrackingData(id, user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from food where username = ? and track_id = ?"
+                connection.query(query, [user, id], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 module.exports = dbService

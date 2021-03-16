@@ -155,7 +155,7 @@ function getSizePrice(size){
 }
 function check(food){
     switch(food){
-        case "Burger":
+        case "Beef Burger":
             addImg.src = "image/icons8-beef-burger-64.png"
             addDesc.innerHTML = "Original recepi comes with burger, drinks and fries"
             addFood.innerHTML = "Burger"
