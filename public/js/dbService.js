@@ -189,5 +189,33 @@ class dbService{
             console.log(err)
         }
     }
+    async getFoodInfo(id){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from food where id = ?"
+                connection.query(query, [id], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async updateFoodInfo(id, size, drink, price){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "UPDATE `food` SET size = ?, drink = ?, price = ? WHERE id = ?"
+                connection.query(query, [size, drink, price, id], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 module.exports = dbService

@@ -5,6 +5,7 @@ const port = 3000
 const parser = require('body-parser')
 const { check, validateResult } = require('express-validator')
 const dbService = require('./public/js/dbService')
+const { urlencoded } = require('body-parser')
 var username
 var checkUser = false
 var food
@@ -91,7 +92,6 @@ app.get('/trackingOrder', urlEncoded, (req, res)=>{
 })
 app.post('/getTrackingData', urlEncoded, (req, res)=>{
     const id = req.query.id
-
     const db = dbService.getdbInstance()
     const result = db.getTrackingData(id, username)
     result
@@ -146,6 +146,27 @@ app.post('/addMealCart', urlEncoded, (req, res)=>{
             .then(err => console.log(err))
         }
     })
+    .then(err => console.log(err))
+})
+app.post('/getFoodInfo', urlEncoded, (req, res)=>{
+    const id = req.query.id
+
+    const db = dbService.getdbInstance()
+    const result = db.getFoodInfo(id)
+    result
+    .then(data => res.json({data : data}))
+    .then(err => console.log(err))
+})
+app.post('/updateFoodInfo', urlEncoded, (req, res)=>{
+    const size = req.query.size
+    const drink = req.query.drink
+    const price = req.query.price
+    const id = req.query.id
+
+    const db = dbService.getdbInstance()
+    const result = db.updateFoodInfo(id, size, drink, price)
+    result
+    .then(data => res.json({success : true}))
     .then(err => console.log(err))
 })
 app.post('/deleteFood', urlEncoded, (req, res)=>{

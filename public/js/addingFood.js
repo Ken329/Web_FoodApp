@@ -24,12 +24,17 @@ var add = document.getElementById('add')
 var urlString = window.location.href
 var url = new URL(urlString);
 var foodName = url.searchParams.get("food")
+var foodAction = url.searchParams.get("action")
+var foodSize = url.searchParams.get("size")
+var foodDrink = url.searchParams.get("drink")
+var foodId = url.searchParams.get('id')
 
 var price = 0
 var size = ""
 var drink = ""
 
 check(foodName)
+checkAction()
 
 btnSize.addEventListener('click', function(){
     toggle.style.left = "0"
@@ -112,44 +117,137 @@ add.addEventListener('click', function(){
     getSizePrice(size)
     var total = price.toFixed(2)
     var sTotal = total.toString()
-    fetch('/addMealCart?food='+foodName+"&size="+size+"&drink="+drink+"&price="+sTotal, {
-        method: "POST"
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            window.open('/user_site', "_self")
-        }
-    })
+    if(foodAction === "update"){
+        fetch('/updateFoodInfo?id='+foodId+"&size="+size+"&drink="+drink+"&price="+sTotal, {
+            method: "POST"
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                window.open('/cart', "_self")
+            }
+        })
+    }else{
+        fetch('/addMealCart?food='+foodName+"&size="+size+"&drink="+drink+"&price="+sTotal, {
+            method: "POST"
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                window.open('/user_site', "_self")
+            }
+        })
+    }
 })
 function getDrinkPrice(drink){
     switch(drink){
-        case "coffee":
+        case "Coffee":
             price += 2.10
             break
-        case "special":
+        case "Special Coffee":
             price += 2.70
             break
-        case "lemenade":
+        case "Lemenade":
             price += 1.10
             break
-        case "milk":
+        case "Milkshake":
             price += 3.50
             break
-        case "cocktail":
+        case "coconut Cocktail":
             price += 5.20
             break
     }
 }
 function getSizePrice(size){
     switch(size){
-        case "small":
+        case "Small":
             price -= 2
             break
-        case "big":
+        case "Big":
             price += 2
             break
         default:
+            break
+    }
+}
+function checkAction(){
+    if(foodAction === "update"){
+        checkSize(foodSize)
+        checkDrink(foodDrink)
+        add.innerHTML = "Update"
+    }
+}
+function checkSize(foodSize){
+    switch(foodSize){
+        case "Small":
+            small.style.backgroundColor = "#F462C6"
+            medium.style.backgroundColor = ""
+            big.style.backgroundColor = ""
+            size = "Small"
+            selected()
+            break
+        case "Medium":
+            small.style.backgroundColor = ""
+            medium.style.backgroundColor = "#F462C6"
+            big.style.backgroundColor = ""
+            size = "Medium"
+            selected()
+            break
+        case "Big":
+            small.style.backgroundColor = ""
+            medium.style.backgroundColor = ""
+            big.style.backgroundColor = "#F462C6"
+            size = "Big"
+            selected()
+            break
+    }
+}
+function checkDrink(foodDrink){
+    switch(foodDrink){
+        case "Coffee":
+            coffee.style.backgroundColor = "#F462C6"
+            special.style.backgroundColor = ""
+            lemonade.style.backgroundColor = ""
+            milk.style.backgroundColor = ""
+            cocktail.style.backgroundColor = ""
+            drink = "Coffee"
+            selected()
+            break
+        case "Special Coffee":
+            coffee.style.backgroundColor = ""
+            special.style.backgroundColor = "#F462C6"
+            lemonade.style.backgroundColor = ""
+            milk.style.backgroundColor = ""
+            cocktail.style.backgroundColor = ""
+            drink = "Special Coffee"
+            selected()
+            break
+        case "Lemonade":
+            coffee.style.backgroundColor = ""
+            special.style.backgroundColor = ""
+            lemonade.style.backgroundColor = "#F462C6"
+            milk.style.backgroundColor = ""
+            cocktail.style.backgroundColor = ""
+            drink = "Lemonade"
+            selected()
+            break
+        case "Milkshake":
+            coffee.style.backgroundColor = ""
+            special.style.backgroundColor = ""
+            lemonade.style.backgroundColor = ""
+            milk.style.backgroundColor = "#F462C6"
+            cocktail.style.backgroundColor = ""
+            drink = "Milkshake"
+            selected()
+            break
+        case "Coconut Cocktail":
+            coffee.style.backgroundColor = ""
+            special.style.backgroundColor = ""
+            lemonade.style.backgroundColor = ""
+            milk.style.backgroundColor = ""
+            cocktail.style.backgroundColor = "#F462C6"
+            drink = "Coconut Cocktail"
+            selected()
             break
     }
 }

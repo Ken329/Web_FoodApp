@@ -57,6 +57,7 @@ function putFoodData(data){
         newTask += `</div>`
         newTask += `<div class="new-content-div">`
         newTask += `<i data-id="${id}" class="fas fa-trash-alt"></i>`
+        newTask += `<i data-id="${id}" class="fas fa-edit"></i>`
         newTask += `</div>`
         newTask += `</div>`
     })
@@ -66,6 +67,9 @@ function putFoodData(data){
 document.getElementById('food_container').addEventListener('click', function(event){
     if(event.target.className === "fas fa-trash-alt"){
         deleteFood(event.target.dataset.id)
+    }
+    if(event.target.className === "fas fa-edit"){
+        updateFood(event.target.dataset.id)
     }
 })
 checkout.addEventListener('click', function(){
@@ -96,6 +100,22 @@ function addPrice(item, price){
     quan += itemQuantity
     var itemTax = (total / 100) * 6
     tax = itemTax.toFixed(2)
+}
+function updateFood(id){
+    fetch('/getFoodInfo?id='+id, {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        goAdding(data['data'])
+    })
+}
+function goAdding(data){
+    var addId = data[0].id
+    var addFood = data[0].food
+    var addSize = data[0].size
+    var addDrink = data[0].drink
+    window.open('/openAdding?food='+addFood+'&action=update'+'&size='+addSize+'&drink='+addDrink+'&id='+addId, "_self")
 }
 function deleteFood(id){
     fetch('/deleteFood?id='+id, {
