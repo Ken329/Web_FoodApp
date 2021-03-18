@@ -176,6 +176,9 @@ loginP.addEventListener('click', function(){
         loginContainer.style.display = "flex"
     }
 })
+popCheck.addEventListener('click', function(){
+    window.open('/checkAccount', "_self")
+})
 popLogout.addEventListener('click', function(){
     alert("Logout Successfully, Thank you for shopping with us")
     window.open('http://localhost:3000', "_self")

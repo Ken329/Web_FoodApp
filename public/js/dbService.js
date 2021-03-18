@@ -301,5 +301,19 @@ class dbService{
             console.log(err)
         }
     }
+    async getAccountInfo(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from user where user_username = ?"
+                connection.query(query, [user], (err, result)=>{
+                    if (err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 module.exports = dbService

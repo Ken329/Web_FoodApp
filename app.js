@@ -56,8 +56,18 @@ app.get('/track', (req, res)=>{
 app.get('/history', (req, res)=>{
     res.render('history', {text : username})
 })
+app.get('/checkAccount', (req, res)=>{
+    res.render('checkAccount',  { text : username })
+})
 app.get('/success', (req, res)=>{
     res.render('success', {text : username})
+})
+app.get('/getAccountInfo', (req, res)=>{
+    const db = dbService.getdbInstance()
+    const result = db.getAccountInfo(username)
+    result
+    .then(data => res.json({data : data}))
+    .then(err => console.log(err))
 })
 app.get('/getUsername', urlEncoded, (req, res)=>{
     const user = req.query.user
