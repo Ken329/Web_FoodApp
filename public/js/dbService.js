@@ -217,5 +217,89 @@ class dbService{
             console.log(err)
         }
     }
+    async receiveOrder(id, user, date){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "INSERT INTO `hiistory`(`username`, `track_id`, `post_date`) VALUES (?,?,?)"
+                connection.query(query, [user, id, date], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async updateFoodReceive(id, user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "UPDATE `food` SET position = ? WHERE track_id = ? and username = ?"
+                connection.query(query, ["history", id, user], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async getHistoryData(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from hiistory where username = ?"
+                connection.query(query, [user], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async getFoodHistory(user, id){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "select * from food where username = ? and track_id = ?"
+                connection.query(query, [user, id], (err, result)=>{
+                    if(err)throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async clearHistory(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "delete from hiistory where username = ?"
+                connection.query(query, [user], (err, result)=>{
+                    if (err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async clearHistoryFood(user){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                const query = "delete from food where username = ? and position = ?"
+                connection.query(query, [user, "history"], (err, result)=>{
+                    if (err) throw err
+                    resolve(result)
+                })
+            })
+            return response
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 module.exports = dbService

@@ -659,11 +659,16 @@
     margin-bottom: 20px;
     display: none;
 }
+
+/*track page*/
 .track-container{
     width: 60%;
     margin-top: 90px;
     margin-left: auto;
     margin-right: auto;
+}
+.new-track-container{
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -729,6 +734,12 @@
 .new-body-div{
     width: 100%;
     padding: 10px 20px;
+}
+.no-track{
+    width: 200px;
+    margin: 30px auto;
+    text-align: center;
+    display: none;
 }
 /*success page*/
 .success-container{
@@ -802,6 +813,103 @@
 }
 .order-div div p{
     margin-bottom: 10px;
+}
+/*history page*/
+.history-container{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+.history-container-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.history-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    border: 2px solid black;
+    border-radius: 30px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+.history-title{
+    width: 100%;
+    height: 45px;
+    padding: 10px 20px;
+    display: flex;
+    position: relative;
+}
+.history-title p:nth-child(1){
+    position: absolute;
+    left: 20px;
+}
+.history-title p:nth-child(2){
+    position: absolute;
+    right: 20px;
+}
+.history-div{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    padding: 20px 30px;
+}
+.history-div img{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.history-fDiv{
+    height: 45px;
+    width: 60%;
+    padding-left: 100px;
+}
+.history-sDiv{
+    height: 45px;
+    width: 30%;
+    padding-left: 50px;
+}
+.history-div div p{
+    margin-top: 10px;
+}
+.history-btn{
+    width: 170px;
+    height: 50px;
+    margin: 30px auto;
+    border: none;
+    outline: none;
+    background-color: #F462C6;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.history-bill{
+    width: 100%;
+    height: 100px;
+    position: relative;
+    border-top: 2px solid black;
+}
+.history-bill-div{
+    width: 250px;
+    position: absolute;
+    right: 20px;
+}
+.history-bill-div div{
+    margin-top: 5px;
+}
+.no-history{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    display: none;
 }
 @media screen and (min-width:901px){
     .index-side-menu{

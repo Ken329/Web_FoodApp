@@ -147,13 +147,13 @@ function getDrinkPrice(drink){
         case "Special Coffee":
             price += 2.70
             break
-        case "Lemenade":
+        case "Lemonade":
             price += 1.10
             break
         case "Milkshake":
             price += 3.50
             break
-        case "coconut Cocktail":
+        case "Coconut Cocktail":
             price += 5.20
             break
     }

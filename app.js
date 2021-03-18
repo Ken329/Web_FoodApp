@@ -53,6 +53,9 @@ app.get('/cart', (req, res)=>{
 app.get('/track', (req, res)=>{
     res.render('trackPage', {text : username})
 })
+app.get('/history', (req, res)=>{
+    res.render('history', {text : username})
+})
 app.get('/success', (req, res)=>{
     res.render('success', {text : username})
 })
@@ -89,6 +92,49 @@ app.get('/trackingOrder', urlEncoded, (req, res)=>{
     const trackingId = req.query.id
 
     res.render('trackingOrder', { text : username, id : trackingId})
+})
+app.get('/getHistoryData', (req, res)=>{
+    const db = dbService.getdbInstance()
+    const result = db.getHistoryData(username)
+    result
+    .then(data => res.json({data : data}))
+    .then(err => console.log(err))
+})
+app.get('/getFoodHistory', (req, res)=>{
+    const id = req.query.id
+
+    const db = dbService.getdbInstance()
+    const result = db.getFoodHistory(username, id)
+    result
+    .then(data => res.json({data : data}))
+    .then(err => console.log(err))
+})
+app.get('/clearHistory', (req, res)=>{
+    const db = dbService.getdbInstance()
+    const result = db.clearHistory(username)
+    result
+    .then(data => {
+        const result = db.clearHistoryFood(username)
+        result
+        .then(data => res.json({success : true}))
+        .then(err => console.log(err))
+    })
+    .then(err => console.log(err))
+})
+app.post('/receiveOrder', urlEncoded, (req, res)=>{
+    const id = req.query.id
+    const date = req.query.date
+
+    const db = dbService.getdbInstance()
+    const result = db.receiveOrder(id, username, date)
+    result
+    .then(data => {
+        const result = db.updateFoodReceive(id, username)
+        result
+        .then(data => res.json({success : true}))
+        .then(err => console.log(err))
+    })
+    .then(err => console.log(err))
 })
 app.post('/getTrackingData', urlEncoded, (req, res)=>{
     const id = req.query.id

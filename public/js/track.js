@@ -1,4 +1,5 @@
 var box = document.getElementById('track_box')
+var noTrack = document.getElementById('no_track')
 var newData = []
 var newDataDrink = []
 let inner = ""
@@ -13,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function(){
     .then(data => filter(data['data']))
 })
 function filter(data){
+    if(data.length === 0){
+        noTrack.style.display = "block"
+        return
+    }
     newData.push(data[0].track_id)
     var number = (data[0].track_id)
     for(var i = 1; i < data.length; i++){
@@ -69,11 +74,31 @@ box.addEventListener('click', function(event){
         trackingOrder(event.target.dataset.id)
     }
     if(event.target.className === "recieve"){
-        console.log(event.target.dataset.id)
+        receiveOrder(event.target.dataset.id)
     }
 })
 function trackingOrder(id){
     window.open('/trackingOrder?id='+id, "_self")
+}
+function receiveOrder(id){
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    if(today.getHours() > 12){
+        var time = today.getHours() - 12 + ":" + today.getMinutes() + "pm";
+    }else{
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + "am";
+    }
+    var dateTime = date+' '+time;
+    
+    fetch('/receiveOrder?id='+id+'&date='+dateTime, {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            window.location.reload()
+        }
+    })
 }
 function filterName(food){
     switch(food){

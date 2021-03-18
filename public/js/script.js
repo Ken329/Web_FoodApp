@@ -115,7 +115,7 @@ sideHistory.addEventListener('click', function(){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
     }else{
-
+        window.open('/history', "_self")
     }
     setTimeout("hideError()", 3000)
 })
@@ -194,7 +194,7 @@ historyP.addEventListener('click', function(){
         errorBox.style.display = "flex"
         errorNoLogin.style.display = "flex"
     }else{
-
+        window.open('/history', "_self")
     }
     setTimeout("hideError()", 3000)
 })
